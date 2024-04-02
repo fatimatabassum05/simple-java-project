@@ -1,0 +1,20 @@
+pipeline{
+	agent none
+	stages {
+		stage('stage-1') {
+			agent {label 'master'}
+			steps {
+				sh 'touch master'
+				sh 'mkdir master-1'
+			}
+		}
+
+		stage('stage-2') {
+			agent {label 'java_node'
+			steps {
+				sh '''touch java_node
+				mkdir java_node_1'''
+			}
+		}
+
+	}
