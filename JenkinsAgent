@@ -10,7 +10,7 @@ pipeline{
 		}
 
 		stage('stage-2') {
-			agent {label 'java_node'
+			agent {label 'java_node'}
 			steps {
 				sh '''touch java_node
 				mkdir java_node_1'''
