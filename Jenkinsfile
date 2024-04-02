@@ -1,5 +1,5 @@
 pipeline{
-	agent any
+	agent {label 'java_node'}
 	stages {
 		stage('Checkout') {
 			steps {
@@ -12,6 +12,17 @@ pipeline{
 				echo "static test cases done"
 			}
 		}
+		
+		stage('Build') {
+			steps {
+				sh 'mvn clean package'
+			}
+		}
 
+		stage('Deploy') {
+			steps {
+				echo "deployed to production"
+			}
+		}
 	}
 }
