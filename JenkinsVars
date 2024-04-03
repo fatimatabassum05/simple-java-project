@@ -4,11 +4,22 @@ pipeline {
 		name='ArtisanTek'
 	}
 	stages {
-		stage('Variable-Demo') {
+		stage('Variable-Toplevel') {
+			environment {
+				place='Bangaluru'
+			}
+			steps {
+				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				echo "Name is: ${name}"
+				echo "Place is: ${place}"
+			}
+		}
+		
+  		stage('Variable-Stagelevel') {
 			steps {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Name is: ${name}"
 			}
 		}
-  	}
+	}
 }
