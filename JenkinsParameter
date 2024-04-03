@@ -1,1 +1,30 @@
-
+pipeline {
+	agent any
+	environment {
+		name='ArtisanTek'
+	}
+  parameters {
+  string defaultValue: 'Jenkins', description: 'Enter your ID', name: 'USER_ID'
+  booleanParam defaultValue: true, name: 'MyBoolean'
+  choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
+  }
+	stages {
+		stage('Variable-Toplevel') {
+			environment {
+				place='Bangaluru'
+			}
+			steps {
+				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				echo "Name is: ${name}"
+				echo "Place is: ${place}"
+			}
+		}
+		
+  		stage('Variable-Stagelevel') {
+			steps {
+				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				echo "Name is: ${name}"
+			}
+		}
+	}
+}
