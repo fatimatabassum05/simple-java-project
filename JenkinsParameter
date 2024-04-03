@@ -3,6 +3,10 @@ pipeline {
 	environment {
 		name='ArtisanTek'
 	}
+	options {
+  		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '4')
+  		timestamps()
+	}
   	parameters {
   		string defaultValue: 'Jenkins', description: 'Enter your ID', name: 'USER_ID'
   		booleanParam defaultValue: true, name: 'MyBoolean'
