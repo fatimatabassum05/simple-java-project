@@ -4,7 +4,7 @@ pipeline {
     JENKINS_DEMO=credential('DEMO_SECRET')
   }
   stages {
-    stages('Hello') {
+    stage('Hello') {
       steps {
         echo "Hello World"
         sh 'echo "My secret credential is: ${JENKINS_DEMO}"'
