@@ -3,11 +3,11 @@ pipeline {
 	environment {
 		name='ArtisanTek'
 	}
-  parameters {
-  string defaultValue: 'Jenkins', description: 'Enter your ID', name: 'USER_ID'
-  booleanParam defaultValue: true, name: 'MyBoolean'
-  choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
-  }
+  	parameters {
+  		string defaultValue: 'Jenkins', description: 'Enter your ID', name: 'USER_ID'
+  		booleanParam defaultValue: true, name: 'MyBoolean'
+  		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
+  	}
 	stages {
 		stage('Variable-Toplevel') {
 			environment {
