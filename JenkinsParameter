@@ -17,6 +17,9 @@ pipeline {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Name is: ${name}"
 				echo "Place is: ${place}"
+				echo "User ID is: ${USER_ID}"
+				echo "Boolean Value is: ${MyBoolean}"
+				echo "Choice is: ${ENV}"
 			}
 		}
 		
