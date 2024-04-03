@@ -2,6 +2,7 @@ pipeline {
 	agent none
   	triggers {
   		cron '* * * * *'
+	upstream 'demo-pipeline1, '
   	}
 
 	stages {
