@@ -14,9 +14,9 @@ pipeline{
 		}
 
 		stage('Build') {
-      when {
-        branch "main"
-      }
+      			when {
+        			branch "main"
+      			}
 			steps {
 				sh 'echo "Building the code"'
 			}
@@ -29,3 +29,4 @@ pipeline{
 		}
 
 	}
+}
