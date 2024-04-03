@@ -3,7 +3,7 @@ pipeline {
   environment {
     JENKINS_DEMO=credentials('DEMO_SECRET')
     GITHUB_CRED=credentials('gitcred')
-    SSH_CRED=credentials('java_node')
+    SSH_CRED=credentials('jenkins')
   }
   stages {
     stage('Hello') {
@@ -14,7 +14,7 @@ pipeline {
         sh 'echo "My Github  user cred: ${GITHUB_CRED_USR}"'
         sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 
-        sh 'echo "Pat of private key: $(SSH_CRED)"'
+        sh 'echo "Path of private key: $(SSH_CRED)"'
         sh 'echo "Username of the cred: $(SSH_CRED_USR)"'
         sh 'echo "Value of passphrase: $(SSH_CRED_PSW)"'
       }
