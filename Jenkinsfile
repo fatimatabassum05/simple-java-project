@@ -9,7 +9,7 @@ pipeline{
 
 		stage('Test') {
 			steps {
-				echo "static test cases done"
+				echo "Static test cases done"
 			}
 		}
 		
@@ -21,7 +21,8 @@ pipeline{
 
 		stage('Deploy') {
 			steps {
-				echo "deployed to production"
+				sh 'cp *.war /opt/apache-tomcat-9.0.86/webapps
+				echo "Deployed to production"
 			}
 		}
 	}
