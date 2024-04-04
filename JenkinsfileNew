@@ -1,11 +1,12 @@
 pipeline{
 	agent any
 	options {
-  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
-  rateLimitBuilds([count: 1, durationName: 'minute', userBoost: false])
-  timestamps
-  retry(3)
-  }
+  		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
+  		rateLimitBuilds([count: 1, durationName: 'minute', userBoost: false])
+  		timestamps
+  		retry(3)
+		quietPeriod 5
+  	}
 	stages {
 		stage('Checkout') {
 			steps {
