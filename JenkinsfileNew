@@ -4,6 +4,7 @@ pipeline{
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
   		timestamps()
   		retry(3)
+		quietPeriod 5
   	}
 	stages {
 		stage('Checkout') {
