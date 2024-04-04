@@ -3,7 +3,7 @@ pipeline{
 	options {
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
   		rateLimitBuilds([count: 1, durationName: 'minute', userBoost: false])
-  		timestamps
+  		timestamps()
   		retry(3)
   	}
 	stages {
