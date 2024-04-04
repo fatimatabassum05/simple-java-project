@@ -5,7 +5,6 @@ pipeline{
   		rateLimitBuilds([count: 1, durationName: 'minute', userBoost: false])
   		timestamps
   		retry(3)
-		quietPeriod 5
   	}
 	stages {
 		stage('Checkout') {
