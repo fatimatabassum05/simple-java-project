@@ -21,7 +21,7 @@ pipeline{
 
 		stage('Deploy') {
 			steps {
-				sh 'cp -r $WORKSPACE/target/*.war /opt/apache-tomcat-9.0.86/webapps/'
+				sh 'cp -r $WORKSPACE/target/*.war /opt/apache-tomcat-9.0.87/webapps/'
 				echo "Deployed to production"
 			}
 		}
