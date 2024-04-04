@@ -21,7 +21,7 @@ pipeline{
 
 		stage('Deploy') {
 			steps {
-				sh 'cp *.war /opt/apache-tomcat-9.0.86/webapps
+				sh 'cp /home/ubuntu/jenkins/workspace/mvn_deploy/target/*.war /opt/apache-tomcat-9.0.86/webapps/'
 				echo "Deployed to production"
 			}
 		}
