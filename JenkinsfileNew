@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
 	agent any
 	options {
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
@@ -32,4 +32,9 @@ pipeline{
 		}
 
 	}
+	post {
+  		always {
+    			sh 'mail -s "Successful" fatimatabassum2010@gmail.com'
+  		}
+	}	
 }
