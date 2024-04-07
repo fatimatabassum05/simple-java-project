@@ -34,9 +34,12 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
+			triggers {
+  				upstream 'Stage-2'
+			}
 			when{
   				allOf{
-					triggeredBy 'success'
+					branch'master'
 				}
 			}
 			agent {label 'sonar_node'}
