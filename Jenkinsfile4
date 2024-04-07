@@ -50,7 +50,7 @@ pipeline {
 		stage('Stage-4') {
 			agent {label 'sonar_node'}
 			when {
-        			 triggeredBy 'Stage-3 is successfull'
+        			 triggeredBy 'Stage-3 is successful'
       			}
 			steps {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID} with build status is ${env.BUILD_STATUS}"
