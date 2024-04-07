@@ -13,6 +13,7 @@ pipeline {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
   		booleanParam defaultValue: true, name: 'MyBoolean'
   		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
+		run filter: 'SUCCESSFUL', name: '', Stage-2: ''
   	}
 	
 	stages {
@@ -34,8 +35,9 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			triggers {
-  				upstream 'Stage-2'
+			post {
+  				success {
+  				}
 			}
 			when{
   				allOf{
@@ -53,7 +55,6 @@ pipeline {
 		}
 
 		stage('Stage-4') {
-			
 			agent {label 'sonar_node'}
 			steps {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID} with build status is ${env.BUILD_STATUS}"
