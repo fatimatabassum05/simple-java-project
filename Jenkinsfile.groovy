@@ -1,29 +1,27 @@
-node{
-	agent {label 'java_node'}
-	stages {
-		stage('Checkout') {
-			steps {
-				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
-			}
+node('java_node'){
+	
+	stage('Checkout') {
+		steps {
+			git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
 		}
+	}
 
-		stage('Test') {
-			steps {
-				echo "Static test cases done"
-			}
+	stage('Test') {
+		steps {
+			echo "Static test cases done"
 		}
+	}
 		
-		stage('Build') {
-			steps {
-				sh '/opt/apache-maven-3.9.6/bin/mvn clean package -Dmaven.test.skip=true'
-			}
+	stage('Build') {
+		steps {
+			sh '/opt/apache-maven-3.9.6/bin/mvn clean package -Dmaven.test.skip=true'
 		}
+	}
 
-		stage('Deploy') {
-			steps {
-				sh 'rsync -r $WORKSPACE/target/*.war /opt/apache-tomcat-9.0.87/webapps/'
-				echo "Deployed to production"
-			}
+	stage('Deploy') {
+		steps {
+			sh 'rsync -r $WORKSPACE/target/*.war /opt/apache-tomcat-9.0.87/webapps/'
+			echo "Deployed to production"
 		}
 	}
 }
