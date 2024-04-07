@@ -22,4 +22,13 @@ pipeline {
 			}
 		}
 	}
+	post {
+  		always {
+    			emailext (
+                		subject: "Build Notification",
+               			body: "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}",
+				to: 'fatimatabassum2010@gmail.com'
+            		)
+  		}
+	}
 }
