@@ -21,6 +21,9 @@ pipeline {
 			agent {lable 'java_node'}
 			steps {
 				echo "Static test cases done"
+				echo "User ID is: ${USER_ID}"
+				echo "Boolean Value is: ${MyBoolean}"
+				echo "Choice is: ${ENV}"
 			}
 		}
 		
