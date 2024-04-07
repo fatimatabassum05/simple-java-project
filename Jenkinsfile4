@@ -17,14 +17,14 @@ pipeline {
 	
 	stages {
 		stage('Stage-1') {
-			agent {lable 'java_node'}
+			agent {label 'java_node'}
 			steps {
 				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
 			}
 		}
 
 		stage('Stage-2') {
-			agent {lable 'java_node'}
+			agent {label 'java_node'}
 			steps {
 				echo "Static test cases done"
 				echo "User ID is: ${USER_ID}"
@@ -34,7 +34,7 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			agent {lable 'sonar_node'}
+			agent {label 'sonar_node'}
 			when {
 				triggeredBy 'Stage-2 is successfull'
         			branch "master"
@@ -49,7 +49,7 @@ pipeline {
 		}
 
 		stage('Stage-4') {
-			agent {lable 'sonar_node'}
+			agent {label 'sonar_node'}
 			when {
         			 triggeredBy 'Stage-3 is successfull'
       			}
