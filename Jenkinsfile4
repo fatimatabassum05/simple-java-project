@@ -35,10 +35,6 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			post {
-  				success {
-  				}
-			}
 			when{
   				allOf{
 					branch'master'
