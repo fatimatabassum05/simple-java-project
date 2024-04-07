@@ -61,7 +61,7 @@ pipeline {
 	}
 	post {
   		always {
-    			emailext(
+    			emailext (
                 		subject: "Build Notification",
                			body: "Build has completed.",
                 		recipientProviders: [triggeringUsers()],
