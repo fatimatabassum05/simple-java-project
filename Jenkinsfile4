@@ -67,9 +67,7 @@ pipeline {
     			emailext (
                 		subject: "Build Notification",
                			body: "Build has completed.",
-                		recipientProviders: [triggeringUsers()],
-				to: 'fatimatabassum2010@gmail.com',
-                		attachLog: true
+				to: 'fatimatabassum2010@gmail.com'
             		)
   		}
 	}	
