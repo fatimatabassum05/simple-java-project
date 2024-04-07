@@ -34,12 +34,10 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			agent {label 'sonar_node'}
 			when {
-				expression {
-					currentBuild.result=='SUCCESS'
-				}
+  				branch 'master'
 			}
+			agent {label 'sonar_node'}
 			steps {
 				sh 'echo "My Secret credential is: ${JENKINS_DEMO}"'
         			sh 'echo "My Github cred USERNAME:PASSWORD: ${GITHUB_CRED}"'
