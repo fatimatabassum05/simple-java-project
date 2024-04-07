@@ -39,6 +39,9 @@ pipeline {
 					expression{
 						branch 'master'
 					}
+					expression{
+						currentBuild.result=='SUCCESS'
+					}
 				}
 			}
 			agent {label 'sonar_node'}
