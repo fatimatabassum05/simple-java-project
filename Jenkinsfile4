@@ -40,7 +40,7 @@ pipeline {
 						branch 'master'
 					}
 					expression{
-						currentBuild.result=='SUCCESS'
+						stageStatus=='SUCCESS'
 					}
 				}
 			}
