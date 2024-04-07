@@ -5,6 +5,8 @@ pipeline {
 	}
 	environment {
 		USER_ID='FatimaTabassum'
+		JENKINS_DEMO=credentials('DEMO_SECRET')
+    		GITHUB_CRED=credentials('gitcred')
 	}
 	parameters {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
