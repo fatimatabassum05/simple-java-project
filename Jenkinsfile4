@@ -35,9 +35,6 @@ pipeline {
 		
 		stage('Stage-3') {
 			agent {label 'sonar_node'}
-			when {
-        			branch "main"
-      			}
 			steps {
 				sh 'echo "My Secret credential is: ${JENKINS_DEMO}"'
         			sh 'echo "My Github cred USERNAME:PASSWORD: ${GITHUB_CRED}"'
