@@ -3,6 +3,12 @@ pipeline {
 	triggers {
   		cron '* * * * *'
 	}
+	parameters {
+  		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
+  		booleanParam(defaultValue: true, name: 'MyBoolean')
+  		choice(choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV')
+  	}
+	
 	stages {
 		stage('Checkout') {
 			agent {lable 'java_node'}
