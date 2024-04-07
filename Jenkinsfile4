@@ -3,6 +3,9 @@ pipeline {
 	triggers {
   		cron '* * * * *'
 	}
+	environment {
+		USER_ID='FatimaTabassum'
+	}
 	parameters {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
   		booleanParam(defaultValue: true, name: 'MyBoolean')
