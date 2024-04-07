@@ -34,8 +34,12 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			when {
-  				branch 'master'
+			when{
+  				allOf{
+					expression{
+						branch 'master'
+					}
+				}
 			}
 			agent {label 'sonar_node'}
 			steps {
