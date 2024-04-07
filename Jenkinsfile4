@@ -38,7 +38,10 @@ pipeline {
         			branch "master"
       			}
 			steps {
-				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				sh 'echo "My Secret credential is: ${JENKINS_DEMO}"'
+        			sh 'echo "My Github cred USERNAME:PASSWORD: ${GITHUB_CRED}"'
+        			sh 'echo "My Github  user cred: ${GITHUB_CRED_USR}"'
+        			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
 			}
 		}
@@ -56,7 +59,12 @@ pipeline {
 	}
 	post {
   		always {
-    			sh 'mail -s "Successful" fatimatabassum2010@gmail.com'
+    			emailext(
+                		subject: "Build Notification",
+               			body: "Build has completed.",
+                		recipientProviders: [triggeringUsers()],
+                		attachLog: true
+            		)
   		}
 	}	
 }
