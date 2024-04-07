@@ -36,7 +36,6 @@ pipeline {
 		stage('Stage-3') {
 			agent {label 'sonar_node'}
 			when {
-				triggeredBy 'Stage-2 is successfull'
         			branch "master"
       			}
 			steps {
