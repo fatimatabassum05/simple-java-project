@@ -34,11 +34,11 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			dependsOn'Stage-2'
 			when{
   				allOf{
 					expression{
 						branch 'master'
+						currentBuild.result=='SUCCESS'
 					}
 				}
 			}
