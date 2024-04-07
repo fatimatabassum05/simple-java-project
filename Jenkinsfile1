@@ -1,0 +1,1 @@
+echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}" | mail -s "mail sent" fatimatabassum2010@gmail.com
