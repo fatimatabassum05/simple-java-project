@@ -14,8 +14,12 @@ pipeline{
 		}
 
 		stage('Build') {
-      			when {
-  				branch comparator: 'EQUALS', pattern: 'master'
+      			when{
+  				allOf{
+					expression{
+						branch 'master'
+					}
+				}
 			}
 
 			steps {
