@@ -59,9 +59,9 @@ pipeline {
 			steps {
 				script {
                     			def stage3 = build 'Stage-3'
-                    			if(stage2.result == 'SUCCESS') {
-                        		echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
-					echo "Deployed to production"
+                    			if(stage3.result == 'SUCCESS') {
+                        			echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+						echo "Deployed to production"
                     			} else {
                         		currentBuild.result = 'ABORTED'
                         		error "Stage-3 was not successful. Stage-4 aborted."
