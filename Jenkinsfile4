@@ -1,0 +1,9 @@
+pipeline {
+  agent none
+  stages {
+    stage('Checkout') {
+      stepts {
+        git branch: 'master', url: ''
+      }
+    }
+    
