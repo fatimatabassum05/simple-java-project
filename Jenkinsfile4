@@ -1,7 +1,8 @@
 pipeline {
 	agent none
 	triggers {
-  		cron '* * * * *'
+  		cron '00 * * * *'
+		pollSCM '* * * * * '
 	}
 	environment {
 		USER_ID='FatimaTabassum'
@@ -35,6 +36,7 @@ pipeline {
 		stage('Stage-3') {
 			agent {lable 'sonar_node'}
 			when {
+				triggeredBy 'Stage-2 is successfull'
         			branch "master"
       			}
 			steps {
@@ -49,10 +51,10 @@ pipeline {
 		stage('Stage-4') {
 			agent {lable 'sonar_node'}
 			when {
-        			branch "main"
+        			 triggeredBy 'Stage-3 is successfull'
       			}
 			steps {
-				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID} with build status is ${env.BUILD_STATUS}"
 				echo "Deployed to production"
 			}
 		}
