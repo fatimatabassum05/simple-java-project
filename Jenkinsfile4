@@ -2,24 +2,28 @@ pipeline {
 	agent none
 	stages {
 		stage('Checkout') {
+			agent {lable 'java_node'}
 			steps {
 				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
 			}
 		}
 
 		stage('Test') {
+			agent {lable 'java_node'}
 			steps {
 				echo "Static test cases done"
 			}
 		}
 		
 		stage('Build') {
+			agent {lable 'sonar_node'}
 			steps {
 				sh '/opt/apache-maven-3.9.6/bin/mvn clean package -Dmaven.test.skip=true'
 			}
 		}
 
 		stage('Deploy') {
+			agent {lable 'sonar_node'}
 			steps {
 				sh 'rsync -r $WORKSPACE/target/*.war /opt/apache-tomcat-9.0.87/webapps/'
 				echo "Deployed to production"
