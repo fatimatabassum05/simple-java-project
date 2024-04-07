@@ -10,14 +10,14 @@ pipeline {
   	}
 	
 	stages {
-		stage('Checkout') {
+		stage('Stage-1') {
 			agent {lable 'java_node'}
 			steps {
 				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
 			}
 		}
 
-		stage('Test') {
+		stage('Stage-2') {
 			agent {lable 'java_node'}
 			steps {
 				echo "Static test cases done"
@@ -27,16 +27,22 @@ pipeline {
 			}
 		}
 		
-		stage('Build') {
+		stage('Stage-3') {
 			agent {lable 'sonar_node'}
+			when {
+        			branch "master"
+      			}
 			steps {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Build successful"
 			}
 		}
 
-		stage('Deploy') {
+		stage('Stage-4') {
 			agent {lable 'sonar_node'}
+			when {
+        			branch "main"
+      			}
 			steps {
 				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Deployed to production"
