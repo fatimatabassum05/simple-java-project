@@ -54,7 +54,7 @@ pipeline {
 		stage('Stage-4') {
 			agent {label 'sonar_node'}
 			steps {
-				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID} with build status is ${env.BUILD_STATUS}"
+				echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Deployed to production"
 			}
 		}
