@@ -15,8 +15,9 @@ pipeline{
 
 		stage('Build') {
       			when {
-        			branch 'master'
-      			}
+  				branch comparator: 'EQUALS', pattern: 'master'
+			}
+
 			steps {
 				sh 'echo "Building the code"'
 			}
