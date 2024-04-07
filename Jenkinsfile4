@@ -9,6 +9,9 @@ pipeline {
 		JENKINS_DEMO=credentials('DEMO_SECRET')
     		GITHUB_CRED=credentials('gitcred')
 	}
+	options {
+  		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '3')
+	}
 	parameters {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
   		booleanParam defaultValue: true, name: 'MyBoolean'
