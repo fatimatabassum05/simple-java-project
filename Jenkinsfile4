@@ -36,9 +36,7 @@ pipeline {
 		stage('Stage-3') {
 			when{
   				allOf{
-					expression{
-						currentBuild.result=='SUCCESS'
-					}
+					triggeredBy 'success'
 				}
 			}
 			agent {label 'sonar_node'}
