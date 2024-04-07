@@ -1,5 +1,8 @@
 pipeline {
 	agent none
+	triggers {
+  		cron '* * * * *'
+	}
 	stages {
 		stage('Checkout') {
 			agent {lable 'java_node'}
