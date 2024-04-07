@@ -38,7 +38,7 @@ pipeline {
   				allOf{
 					expression{
 						branch 'master'
-						currentBuild.result=='SUCCESS'
+						previousStage('success')
 					}
 				}
 			}
