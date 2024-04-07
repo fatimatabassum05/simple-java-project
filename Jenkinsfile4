@@ -34,7 +34,7 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			dependsOn 'Stage-2'
+			dependsOn'Stage-2'
 			when{
   				allOf{
 					expression{
