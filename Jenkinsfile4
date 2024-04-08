@@ -57,6 +57,11 @@ pipeline {
         			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
 			}
+			post {
+                		success {
+                    			echo "Stage-3 completed successfully"
+                		}
+			}
 		}
 
 		stage('Stage-4') {
