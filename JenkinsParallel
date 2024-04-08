@@ -30,8 +30,8 @@ pipeline {
 	post {
   		always {
     			emailext (
-                		subject: "Build Notification",
-               			body: "Build has completed.",
+                		subject: "Build Notification: ${BUILD_NUMBER}",
+               			body: "Build Stages completed.",
 				to: 'fatimatabassum2010@gmail.com',
 				from: 'jenkins@gmail.com'
             		)
