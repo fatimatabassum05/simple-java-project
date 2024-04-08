@@ -42,7 +42,6 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
-			options { skipStagesAfterUnstable() }
 			when{
   				allOf{
 					expression{
