@@ -16,7 +16,6 @@ pipeline {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
   		booleanParam defaultValue: true, name: 'MyBoolean'
   		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
-		 run filter: 'SUCCESSFUL', name: 'Stage-3', projectName: '4-stages-pipeline'
   	}
 	
 	stages {
@@ -57,8 +56,11 @@ pipeline {
         			sh 'echo "My Github  user cred: ${GITHUB_CRED_USR}"'
         			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
-				echo "Completed: ${Stage-3}"
 			}
+			options {
+  				skipStagesAfterUnstable()
+			}
+
 			post {
                 		success {
                     			echo "Stage-3 completed successfully"
