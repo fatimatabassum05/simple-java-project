@@ -77,7 +77,8 @@ pipeline {
     			emailext (
                 		subject: "Build Notification",
                			body: "Build has completed.",
-				to: 'fatimatabassum2010@gmail.com'
+				to: 'fatimatabassum2010@gmail.com',
+				from: 'jenkins@gmail.com'
             		)
   		}
 	}	
