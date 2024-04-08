@@ -16,6 +16,7 @@ pipeline {
   		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
   		booleanParam defaultValue: true, name: 'MyBoolean'
   		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
+		 run filter: 'SUCCESSFUL', name: 'Stage-3', projectName: '4-stages-pipeline'
   	}
 	
 	stages {
