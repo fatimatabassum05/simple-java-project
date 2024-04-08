@@ -34,14 +34,9 @@ pipeline {
 				echo "Boolean Value is: ${MyBoolean}"
 				echo "Choice is: ${ENV}"
 			}
-			post {
-                		success {
-                    			buildThirdStage()
-                		}
-			}
 		}
 		
-		stage('Third Stage') {
+		stage('Stage-3') {
 			when{
   				allOf{
 					expression{
@@ -57,13 +52,9 @@ pipeline {
         			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
 			}
-			post {
-                		success {
-                		}
-			}
 		}
 
-		stage('Fourth Stage') {
+		stage('Stage-4') {
 			agent {label 'sonar_node'}	
 			steps {
                 		echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
@@ -81,11 +72,4 @@ pipeline {
   		}
 	}	
 }
-def buildThirdStage() {
-    build job: 'Third Stage Job'
-}
-def buildFourthStage() {
-    build job: 'Fourth Stage Job'
-}
-
 
