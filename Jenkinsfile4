@@ -42,15 +42,13 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
+			options { skipStagesAfterUnstable() }
 			when{
   				allOf{
 					expression{
 						branch 'master, DEV'
 					}
 				}
-			}
-			options {
-  				skipStagesAfterUnstable()
 			}
 			agent {label 'sonar_node'}
 			steps {
