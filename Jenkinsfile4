@@ -49,6 +49,9 @@ pipeline {
 					}
 				}
 			}
+			options {
+  				skipStagesAfterUnstable()
+			}
 			agent {label 'sonar_node'}
 			steps {
 				sh 'echo "My Secret credential is: ${JENKINS_DEMO}"'
@@ -57,10 +60,6 @@ pipeline {
         			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
 			}
-			options {
-  				skipStagesAfterUnstable()
-			}
-
 			post {
                 		success {
                     			echo "Stage-3 completed successfully"
