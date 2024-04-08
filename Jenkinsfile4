@@ -8,6 +8,10 @@ pipeline {
 		USER_ID='FatimaTabassum'
 		JENKINS_DEMO=credentials('DEMO_SECRET')
     		GITHUB_CRED=credentials('gitcred')
+		STAGE-1=Stage-1
+		STAGE-2=Stage-2
+		STAGE-3=Stage-3
+		STAGE-4=Stage-4
 	}
 	options {
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '2')
@@ -19,14 +23,14 @@ pipeline {
   	}
 	
 	stages {
-		stage('Stage-1') {
+		stage('${STAGE-1}') {
 			agent {label 'java_node'}
 			steps {
 				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
 			}
 		}
 
-		stage('Stage-2') {
+		stage('${STAGE-2}') {
 			agent {label 'java_node'}
 			steps {
 				echo "Static test cases done"
@@ -37,11 +41,12 @@ pipeline {
 			post {
                 		success {
                     			echo "Stage-2 completed successfully"
+					build '${STAGE-3}'
                 		}
 			}
 		}
 		
-		stage('Stage-3') {
+		stage('${STAGE-3}') {
 			when{
   				allOf{
 					expression{
@@ -64,7 +69,7 @@ pipeline {
 			}
 		}
 
-		stage('Stage-4') {
+		stage('${STAGE-4}') {
 			agent {label 'sonar_node'}	
 			steps {
                 		echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
