@@ -34,9 +34,14 @@ pipeline {
 				echo "Boolean Value is: ${MyBoolean}"
 				echo "Choice is: ${ENV}"
 			}
+			post {
+                		success {
+                    			buildThirdStage()
+                		}
+			}
 		}
 		
-		stage('Stage-3') {
+		stage('Third Stage') {
 			when{
   				allOf{
 					expression{
@@ -54,12 +59,15 @@ pipeline {
 			}
 		}
 
-		stage('Stage-4') {
-			agent {label 'sonar_node'}
-			options { skipStagesAfterUnstable()} 		
+		stage('Fourth Stage') {
+			agent {label 'sonar_node'}	
 			steps {
                 		echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Deployed to production"
+			}
+			post {
+                		success {
+                		}
 			}
 		}
 	}
@@ -73,3 +81,11 @@ pipeline {
   		}
 	}	
 }
+def buildThirdStage() {
+    build job: 'Third Stage Job'
+}
+def buildFourthStage() {
+    build job: 'Fourth Stage Job'
+}
+
+
