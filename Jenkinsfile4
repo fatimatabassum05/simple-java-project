@@ -34,6 +34,12 @@ pipeline {
 				echo "Boolean Value is: ${MyBoolean}"
 				echo "Choice is: ${ENV}"
 			}
+			post {
+                		success {
+                    			echo "Stage-2 completed successfully"
+                    			build 'Stage-3'
+                		}
+			}
 		}
 		
 		stage('Stage-3') {
