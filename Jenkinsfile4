@@ -61,6 +61,7 @@ pipeline {
 			post {
                 		success {
                     			echo "Stage-3 completed successfully"
+					echo "Completed: ${Stage-3}"
                 		}
 			}
 		}
