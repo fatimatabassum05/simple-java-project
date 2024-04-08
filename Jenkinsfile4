@@ -8,7 +8,6 @@ pipeline {
 		USER_ID='FatimaTabassum'
 		JENKINS_DEMO=credentials('DEMO_SECRET')
     		GITHUB_CRED=credentials('gitcred')
-		Stage_3='Stage-3'
 	}
 	options {
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '2')
@@ -38,16 +37,15 @@ pipeline {
 			post {
                 		success {
                     			echo "Stage-2 completed successfully"
-					build "${Stage_3}"
                 		}
 			}
 		}
 		
-		stage('${Stage_3}') {
+		stage('Stage-3') {
 			when{
   				allOf{
 					expression{
-						branch 'master'
+						branch 'master, DEV'
 					}
 				}
 			}
