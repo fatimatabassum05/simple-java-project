@@ -57,6 +57,10 @@ pipeline {
         			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
 				echo "Build successful"
 			}
+			post {
+                		success {
+                		}
+			}
 		}
 
 		stage('Fourth Stage') {
@@ -64,10 +68,6 @@ pipeline {
 			steps {
                 		echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
 				echo "Deployed to production"
-			}
-			post {
-                		success {
-                		}
 			}
 		}
 	}
