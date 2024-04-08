@@ -3,22 +3,22 @@ pipeline {
 	stages {
 		stage('stage-1') {
 		  parallel{	
-        stage('Stage-1A') {    
-          agent {label 'master'}
+        		stage('Stage-1A') {    
+          		agent {label 'master'}
 			    steps {
 				    sh 'sleep 30'
 				    echo "sh mkdir master-1"
 			    }
-		    }
-        stage('Stage-1B') {    
-          agent {label 'java_node'}
+		    	}
+        		stage('Stage-1B') {    
+          		agent {label 'java_node'}
 			    steps {
 				    sh 'sleep 30'
 				    echo "sh mkdir master-1"
 			    }
-		    }
-      }
-    }
+		    	}
+      		  }
+    		}
 		stage('stage-2') {
 			agent {label 'java_node'}
 			steps {
@@ -27,4 +27,14 @@ pipeline {
 			}
 		}
 	}
+	post {
+  		always {
+    			emailext (
+                		subject: "Build Notification",
+               			body: "Build has completed.",
+				to: 'fatimatabassum2010@gmail.com',
+				from: 'jenkins@gmail.com'
+            		)
+  		}
+	}	
 }
