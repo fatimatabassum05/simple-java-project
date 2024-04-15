@@ -70,15 +70,15 @@ pipeline {
 		}
 
 		stage('Stage-4') {
-      when {
-                expression {
-                    currentBuild.result == 'SUCCESS'
-                }
-      }
+      			when {
+                		expression {
+                    			currentBuild.result == 'SUCCESS'
+                		}
+      			}
 			agent {label 'sonar_node'}	
 			steps {
-            echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
-				    echo "Deployed to production"
+            			echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				echo "Deployed to production"
 			}
 		}
 	}
