@@ -1,0 +1,90 @@
+pipeline {
+	agent none
+	triggers {
+  		cron '00 * * * *'
+		pollSCM '* * * * * '
+	}
+	environment {
+		USER_ID='FatimaTabassum'
+		JENKINS_DEMO=credentials('DEMO_SECRET')
+    		GITHUB_CRED=credentials('gitcred')
+	}
+	options {
+  		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '2')
+	}
+	parameters {
+  		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
+  		booleanParam defaultValue: true, name: 'MyBoolean'
+  		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
+  	}
+	
+	stages {
+		stage('Stage-1') {
+			agent {label 'java_node'}
+			steps {
+				git branch: 'master', url: 'https://github.com/fatimatabassum05/simple-java-project.git'
+			}
+		}
+
+		stage('Stage-2') {
+			agent {label 'java_node'}
+			steps {
+				echo "Static test cases done"
+				echo "User ID is: ${USER_ID}"
+				echo "Boolean Value is: ${MyBoolean}"
+				echo "Choice is: ${ENV}"
+			}
+			post {
+            success {
+                    	echo "Stage-2 completed successfully"
+            }
+			}
+		}
+		
+		stage('Stage-3') {
+			when{
+  				allOf{
+					expression{
+						branch 'master, DEV'
+					}
+				}
+			}
+			agent {label 'sonar_node'}
+			steps {
+				sh 'echo "My Secret credential is: ${JENKINS_DEMO}"'
+        			sh 'echo "My Github cred USERNAME:PASSWORD: ${GITHUB_CRED}"'
+        			sh 'echo "My Github  user cred: ${GITHUB_CRED_USR}"'
+        			sh 'echo "My Github password is: ${GITHUB_CRED_PSW}"'
+				echo "Build successful"
+			}
+			post {
+                		success {
+                    			echo "Stage-3 completed successfully"
+                		}
+			}
+		}
+
+		stage('Stage-4') {
+      when {
+                expression {
+                    currentBuild.result == 'SUCCESS'
+                }
+      }
+			agent {label 'sonar_node'}	
+			steps {
+            echo "Job ${env.JOB_NAME} is running on ${env.JENKINS_URL} and having build no: ${env.BUILD_ID}"
+				    echo "Deployed to production"
+			}
+		}
+	}
+	post {
+  		always {
+    			emailext (
+                		subject: "Build Notification",
+               			body: "Build has completed.",
+				to: 'fatimatabassum2010@gmail.com',
+				from: 'jenkins@gmail.com'
+            		)
+  		}
+	}	
+}
