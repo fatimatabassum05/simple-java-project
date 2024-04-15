@@ -21,7 +21,7 @@ pipeline{
 
 		stage('Deploy') {
 			steps {
-				sh 'rsync -r $WORKSPACE/target/*.war ubuntu@/opt/apache-tomcat-9.0.87/webapps/'
+				sh 'rsync -r $WORKSPACE/target/*.war ec2-user@ip-172-31-42-236/opt/apache-tomcat-9.0.87/webapps/'
 				echo "Deployed to production"
 			}
 		}
