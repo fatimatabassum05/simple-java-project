@@ -13,7 +13,7 @@ pipeline {
   		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '1', numToKeepStr: '2')
 	}
 	parameters {
-  		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER_ID')
+  		string(defaultValue: 'FatimaTabassum', description: 'Enter your ID', name: 'USER')
   		booleanParam defaultValue: true, name: 'MyBoolean'
   		choice choices: ['DEV', 'TEST', 'PROD', 'UAT'], name: 'ENV'
   	}
@@ -30,7 +30,7 @@ pipeline {
 			agent {label 'java_node'}
 			steps {
 				echo "Static test cases done"
-				echo "User ID is: ${USER_ID}"
+				echo "User ID is: ${USER}"
 				echo "Boolean Value is: ${MyBoolean}"
 				echo "Choice is: ${ENV}"
 			}
