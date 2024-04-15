@@ -42,6 +42,11 @@ pipeline {
 		}
 		
 		stage('Stage-3') {
+			when {
+                		expression {
+                    			currentBuild.result == 'SUCCESS'
+                		}
+      			}
 			when{
   				allOf{
 					expression{
