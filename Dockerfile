@@ -1,6 +1,6 @@
 FROM ubuntu:latest as builder
 
-RUN apt update && apt install -y git && apt-get install -y maven && apt-get install -y vim
+RUN apt update && apt install -y git && apt-get install -y maven
 
 RUN git clone https://github.com/fatimatabassum05/simple-java-project.git
 
