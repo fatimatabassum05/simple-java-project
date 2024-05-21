@@ -2,7 +2,7 @@ pipeline {
 	agent none
 	triggers {
   		cron '00 * 15 * *'
-		pollSCM '* * * * * '
+		pollSCM '* * 15 * * '
 	}
 	environment {
 		USER_ID='FatimaTabassum'
