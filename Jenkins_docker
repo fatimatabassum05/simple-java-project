@@ -14,7 +14,7 @@ pipeline{
                 script{
                   sh '''
                   echo 'Build docker image'
-                  sudo docker build -t fatimatabassum/jenkins-java-docker:${BUILD_NUMBER} .
+                  docker build -t fatimatabassum/jenkins-java-docker:${BUILD_NUMBER} .
                   '''
                 }
             }
