@@ -1,7 +1,7 @@
 pipeline {
 	agent none
   	triggers {
-  		cron '* * * * *'
+  		cron '* * 15 * *'
 	upstream 'demo-pipeline1, '
   	}
 
