@@ -1,5 +1,5 @@
 pipeline{
-	agent {label 'demo-instance'}
+	agent {label 'ec2-agent'}
 	stages {
 		stage('Checkout') {
 			steps {
